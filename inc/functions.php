@@ -88,6 +88,54 @@ function colormag_image_uploader() {
 
 /****************************************************************************************/
 
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+  register_taxonomy(
+		'event',
+		'post',
+		array(
+			'labels' =>  array(
+        'name' => __( 'Sự kiện' ),
+        'add_new_item'  => __('Thêm sự kiện'),
+        'search_items' => __('Tìm sự kiện'),
+      ),
+      'rewrite' =>  array('slug' => 'su-kien', 'with_front' => false),
+      'hierarchical' => true,
+      'public' => true,
+		)
+	);
+
+  register_post_type( 'testimonial',
+    array(
+      'labels' => array(
+        'name' => __( 'Lời hay' ),
+        'add_new' => __( 'Viết lời hay mới' ),
+        'all_items' => __( 'Tất cả lời hay' ),
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array('slug' => 'loi-hay'),
+      'menu_icon' => 'dashicons-format-quote',
+      'supports' => array( 'title', 'editor', 'author', 'thumbnail' ),
+      'taxonomies' => array( 'post_tag' ),
+    )
+  );
+}
+
+/****************************************************************************************/
+
+function my_acf_google_map_api( $api ){
+
+	$api['key'] = 'AIzaSyALVPRX6_QArY08z3-b8lsKUO65gCRjscQ';
+
+	return $api;
+
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+/****************************************************************************************/
+
 add_filter( 'excerpt_length', 'colormag_excerpt_length' );
 /**
  * Sets the post excerpt length to 40 words.
@@ -479,11 +527,7 @@ if ( ! function_exists( 'colormag_footer_copyright' ) ) :
 function colormag_footer_copyright() {
    $site_link = '<a href="' . esc_url( home_url( '/' ) ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" ><span>' . get_bloginfo( 'name', 'display' ) . '</span></a>';
 
-   $wp_link = '<a href="https://wordpress.org" target="_blank" title="' . esc_attr__( 'WordPress', 'colormag' ) . '"><span>' . __( 'WordPress', 'colormag' ) . '</span></a>';
-
-   $tg_link =  '<a href="https://themegrill.com/themes/colormag" target="_blank" title="'.esc_attr__( 'ThemeGrill', 'colormag' ).'" rel="designer"><span>'.__( 'ThemeGrill', 'colormag') .'</span></a>';
-
-   $default_footer_value = sprintf( __( 'Copyright &copy; %1$s %2$s. All rights reserved.', 'colormag' ), date( 'Y' ), $site_link ).'<br>'.sprintf( __( 'Theme: %1$s by %2$s.', 'colormag' ), 'ColorMag', $tg_link ).' '.sprintf( __( 'Powered by %s.', 'colormag' ), $wp_link );
+   $default_footer_value = sprintf( __('&copy; %1$s %2$s | Tp. Hồ Chí Minh, VN', 'colormag' ), date( 'Y' ), $site_link );
 
    $colormag_footer_copyright = '<div class="copyright">'.$default_footer_value.'</div>';
    echo $colormag_footer_copyright;

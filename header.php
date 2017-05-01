@@ -45,9 +45,7 @@ wp_head();
             </div>
          <?php endif; ?>
 
-			<?php if (get_theme_mod('colormag_header_image_position', 'position_two') == 'position_one') { colormag_render_header_image(); } ?>
-
-			<div class="inner-wrap">
+			<div class="header-text-inner-wrap" style="background-image: url(<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>);">
 
 				<div id="header-text-nav-wrap" class="clearfix">
 					<div id="header-left-section">
@@ -81,6 +79,10 @@ wp_head();
                         </h3>
                      <?php endif; ?>
 							<?php
+										 $today = date_i18n('l, j/n/Y'); ?>
+										 <p id="site-today-date"><?php echo $today ?></p>
+
+							<?php
                      $description = get_bloginfo( 'description', 'display' );
                      if ( $description || is_customize_preview() ) : ?>
                         <p id="site-description"><?php echo $description; ?></p>
@@ -106,8 +108,6 @@ wp_head();
 			   </div><!-- #header-text-nav-wrap -->
 
 			</div><!-- .inner-wrap -->
-
-			<?php if( get_theme_mod( 'colormag_header_image_position', 'position_two' ) == 'position_two' ) { colormag_render_header_image(); } ?>
 
 			<nav id="site-navigation" class="main-navigation clearfix" role="navigation">
 				<div class="inner-wrap clearfix">
@@ -143,12 +143,12 @@ wp_head();
                      <?php get_search_form(); ?>
                   </div>
                <?php } ?>
+							 <i class="fa fa-calendar calendar-top"></i>
+							 <i class="fa fa-user-circle-o user-top"></i>
 				</div>
 			</nav>
 
 		</div><!-- #header-text-nav-container -->
-
-		<?php if( get_theme_mod( 'colormag_header_image_position', 'position_two' ) == 'position_three' ) { colormag_render_header_image(); } ?>
 
 	</header>
 	<?php do_action( 'colormag_after_header' ); ?>
