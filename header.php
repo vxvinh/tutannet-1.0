@@ -29,23 +29,7 @@ wp_head();
 	<?php do_action( 'colormag_before_header' ); ?>
 	<header id="masthead" class="site-header clearfix">
 		<div id="header-text-nav-container" class="clearfix">
-         <?php if ( get_theme_mod( 'colormag_breaking_news', 0 ) == 1 || get_theme_mod( 'colormag_date_display', 0 ) == 1 || get_theme_mod( 'colormag_social_link_activate', 0 ) == 1 ) : ?>
-            <div class="news-bar">
-               <div class="inner-wrap clearfix">
-                  <?php if (get_theme_mod('colormag_date_display', 0) == 1)
-                     colormag_date_display();
-                  ?>
-
-                  <?php if (get_theme_mod('colormag_breaking_news', 0) == 1)
-                     colormag_breaking_news();
-                  ?>
-
-                  <?php if( get_theme_mod( 'colormag_social_link_activate', 0 ) == 1 ) { colormag_social_links(); } ?>
-               </div>
-            </div>
-         <?php endif; ?>
-
-			<div class="header-text-inner-wrap" style="background-image: url(<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>);">
+			<div class="header-text-inner-wrap" style="background: url(<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>) no-repeat;">
 
 				<div id="header-text-nav-wrap" class="clearfix">
 					<div id="header-left-section">
@@ -69,24 +53,24 @@ wp_head();
                   }
 						?>
 						<div id="header-text" class="<?php echo $screen_reader; ?>">
-                     <?php if ( is_front_page() || is_home() ) : ?>
-   							<h1 id="site-title">
-   								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-   							</h1>
-                     <?php else : ?>
-                        <h3 id="site-title">
-                           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-                        </h3>
-                     <?php endif; ?>
-							<?php
-										 $today = date_i18n('l, j/n/Y'); ?>
-										 <p id="site-today-date"><?php echo $today ?></p>
-
-							<?php
-                     $description = get_bloginfo( 'description', 'display' );
-                     if ( $description || is_customize_preview() ) : ?>
-                        <p id="site-description"><?php echo $description; ?></p>
-                     <?php endif;?><!-- #site-description -->
+									<div class="row">
+										<div class="col-xs-2"></div>
+										<div class="col-xs-8">
+											<?php if ( is_front_page() || is_home() ) : ?>
+												<h1 id="site-title">
+				   								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				   							</h1>
+				                     <?php else : ?>
+				                        <h3 id="site-title">
+				                           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				                        </h3>
+											<?php endif; ?>
+										</div>
+										<div class="col-xs-2">
+											<?php if ( get_theme_mod( 'colormag_date_display', 0 ) == 1 ) { ?>
+												 <?php colormag_date_display(); ?>
+											<?php } ?>
+									</div><!-- .row site-title -->
 						</div><!-- #header-text -->
 					</div><!-- #header-left-section -->
 					<div id="header-right-section">
@@ -108,8 +92,22 @@ wp_head();
 			   </div><!-- #header-text-nav-wrap -->
 
 			</div><!-- .inner-wrap -->
+			<div id="site-today" class="row">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-6" style="text-align: center;">
+					<?php if ( get_theme_mod( 'colormag_breaking_news', 0 ) == 1 ) { ?>
+						 <?php colormag_breaking_news(); ?>
+					<?php } ?>
+				</div>
+				<div class="col-xs-3">
+
+				</div>
+			</div><!-- .row -->
 
 			<nav id="site-navigation" class="main-navigation clearfix" role="navigation">
+				<div class="search-form-top">
+					 <?php get_search_form(); ?>
+				</div>
 				<div class="inner-wrap clearfix">
 					<?php
                if ( get_theme_mod( 'colormag_home_icon_display', 0 ) == 1 ) {
@@ -120,7 +118,7 @@ wp_head();
                   }
                   ?>
                   <div class="<?php echo $home_icon_class; ?>">
-                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><i class="fa fa-home"></i></a>
+                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><img src="<?php echo get_template_directory_uri() . '/img/lotus-logo.svg'?>"></a>
                   </div>
                   <?php
                }
@@ -134,17 +132,21 @@ wp_head();
 						wp_page_menu();
 					}
 					?>
-               <?php if ( get_theme_mod( 'colormag_random_post_in_menu', 0 ) == 1 ) { ?>
-                  <?php colormag_random_post(); ?>
-               <?php } ?>
-               <?php if ( get_theme_mod( 'colormag_search_icon_in_menu', 0 ) == 1 ) { ?>
-                  <i class="fa fa-search search-top"></i>
-                  <div class="search-form-top">
-                     <?php get_search_form(); ?>
-                  </div>
-               <?php } ?>
-							 <i class="fa fa-calendar calendar-top"></i>
-							 <i class="fa fa-user-circle-o user-top"></i>
+							<div class="toolbar-container">
+								<?php if ( get_theme_mod( 'tutannet_search_icon_in_menu', 0 ) == 1 ) { ?>
+                   <?php tutannet_search_icon(); ?>
+                <?php } ?>
+								<?php if ( get_theme_mod( 'colormag_random_post_in_menu', 0 ) == 1 ) { ?>
+                   <?php colormag_random_post(); ?>
+                <?php } ?>
+								<?php if ( get_theme_mod( 'tutannet_calendar_icon_in_menu', 0 ) == 1 ) { ?>
+                   <?php tutannet_calendar_icon(); ?>
+                <?php } ?>
+								<?php if ( get_theme_mod( 'tutannet_user_icon_in_menu', 0 ) == 1 ) { ?>
+                   <?php tutannet_user_icon(); ?>
+                <?php } ?>
+							</div>
+
 				</div>
 			</nav>
 

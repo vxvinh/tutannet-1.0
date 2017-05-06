@@ -310,7 +310,7 @@ class colormag_featured_posts_slider_widget extends WP_Widget {
                            esc_attr( get_the_date( 'c' ) ),
                            esc_html( get_the_date() )
                         );
-                        printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+                        printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
                            esc_url( get_permalink() ),
                            esc_attr( get_the_time() ),
                            $time_string
@@ -344,14 +344,20 @@ class colormag_highlighted_posts_widget extends WP_Widget {
    }
 
    function form( $instance ) {
+      $tg_defaults['title'] = '';
       $tg_defaults['number'] = 4;
       $tg_defaults['type'] = 'latest';
       $tg_defaults['category'] = '';
       $instance = wp_parse_args( (array) $instance, $tg_defaults );
+      $title = esc_attr( $instance[ 'title' ] );
       $number = $instance['number'];
       $type = $instance['type'];
       $category = $instance['category'];
       ?>
+      <p>
+         <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'colormag' ); ?></label>
+         <input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+      </p>
       <p>
          <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of posts to display:', 'colormag' ); ?></label>
          <input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" />
@@ -369,6 +375,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
 
    function update( $new_instance, $old_instance ) {
       $instance = $old_instance;
+      $instance[ 'title' ] = strip_tags( $new_instance[ 'title' ] );
       $instance[ 'number' ] = absint( $new_instance[ 'number' ] );
       $instance[ 'type' ] = $new_instance[ 'type' ];
       $instance[ 'category' ] = $new_instance[ 'category' ];
@@ -381,6 +388,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
       extract( $instance );
 
       global $post;
+      $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
       $number = empty( $instance[ 'number' ] ) ? 4 : $instance[ 'number' ];
       $type = isset( $instance[ 'type' ] ) ? $instance[ 'type' ] : 'latest' ;
       $category = isset( $instance[ 'category' ] ) ? $instance[ 'category' ] : '';
@@ -403,11 +411,14 @@ class colormag_highlighted_posts_widget extends WP_Widget {
       ?>
       <div class="widget_highlighted_post_area">
       <?php $featured = 'colormag-highlighted-post'; ?>
+      <?php
+        if ( !empty( $title ) ) { echo '<h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3>'; }
+       ?>
          <?php
          $i=1;
          while( $get_featured_posts->have_posts() ):$get_featured_posts->the_post();
             ?>
-            <div class="single-article">
+            <div class="single-article col-xs-12 col-sm-6 col-md-6">
                <?php
                if( has_post_thumbnail() ) {
                   $image = '';
@@ -424,7 +435,6 @@ class colormag_highlighted_posts_widget extends WP_Widget {
                <?php }
                ?>
                <div class="article-content">
-                  <?php colormag_colored_category(); ?>
                   <h3 class="entry-title">
                      <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                   </h3>
@@ -435,13 +445,12 @@ class colormag_highlighted_posts_widget extends WP_Widget {
                            esc_attr( get_the_date( 'c' ) ),
                            esc_html( get_the_date() )
                         );
-                        printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+                        printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
                            esc_url( get_permalink() ),
                            esc_attr( get_the_time() ),
                            $time_string
                         );
                      ?>
-                     <span class="comments"><i class="fa fa-comment"></i><?php comments_popup_link( '0', '1', '%' );?></span>
                   </div>
                </div>
 
@@ -463,7 +472,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
 class colormag_featured_posts_widget extends WP_Widget {
 
    function __construct() {
-      $widget_ops = array( 'classname' => 'widget_featured_posts widget_featured_meta', 'description' =>__( 'Display latest posts or posts of specific category.' , 'colormag') );
+      $widget_ops = array( 'classname' => 'widget_featured_posts widget_featured_posts_horizontal widget_featured_meta', 'description' =>__( 'Display latest posts or posts of specific category.' , 'colormag') );
       $control_ops = array( 'width' => 200, 'height' =>250 );
       parent::__construct( false,$name= __( 'TG: Featured Posts (Style 1)', 'colormag' ),$widget_ops);
    }
@@ -574,7 +583,6 @@ class colormag_featured_posts_widget extends WP_Widget {
                   }
                   ?>
                   <div class="article-content">
-                     <?php colormag_colored_category(); ?>
                      <h3 class="entry-title">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                      </h3>
@@ -585,7 +593,7 @@ class colormag_featured_posts_widget extends WP_Widget {
                               esc_attr( get_the_date( 'c' ) ),
                               esc_html( get_the_date() )
                            );
-                           printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+                           printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
                               esc_url( get_permalink() ),
                               esc_attr( get_the_time() ),
                               $time_string
@@ -717,8 +725,8 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
          while( $get_featured_posts->have_posts() ):$get_featured_posts->the_post();
             ?>
             <?php if( $i == 1 ) { $featured = 'colormag-featured-post-medium'; } else { $featured = 'colormag-featured-post-small'; } ?>
-            <?php if( $i == 1 ) { echo '<div class="first-post">'; } elseif ( $i == 2 ) { echo '<div class="following-post">'; } ?>
-               <div class="single-article clearfix">
+            <?php if( $i == 1 ) { echo '<div class="first-post container-fluid">'; } elseif ( $i == 2 ) { echo '<div class="following-post container-fluid">'; } ?>
+            <?php if( $i == 1 ) { echo '<div class="single-article col-xs-12 col-sm-12 col-md-12 clearfix">'; } elseif ( $i >= 2 ) { echo '<div class="single-article col-xs-12 col-sm-12 col-md-4 clearfix">'; } ?>
                   <?php
                   if( has_post_thumbnail() ) {
                      $image = '';
@@ -730,8 +738,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
                      echo $image;
                   }
                   ?>
-                  <div class="article-content">
-                     <?php colormag_colored_category(); ?>
+                  <?php if( $i == 1 ) { echo '<div class="article-content col-xs-6 col-sm-6 col-md-6">' ; } else { echo '<div class="article-content">'; } ?>
                      <h3 class="entry-title">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                      </h3>
@@ -742,7 +749,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
                               esc_attr( get_the_date( 'c' ) ),
                               esc_html( get_the_date() )
                            );
-                           printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+                           printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
                               esc_url( get_permalink() ),
                               esc_attr( get_the_time() ),
                               $time_string
@@ -751,6 +758,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
                         <span class="comments"><i class="fa fa-comment"></i><?php comments_popup_link( '0', '1', '%' );?></span>
                      </div>
                      <?php if( $i == 1 ) { ?>
+                     <hr></hr>
                      <div class="entry-content">
                         <?php the_excerpt(); ?>
                      </div>

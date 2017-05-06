@@ -26,8 +26,6 @@ function colormag_social_links() {
 		'colormag_social_youtube'		=> __( 'YouTube', 'colormag' )
 	);
 	?>
-	<div class="social-links clearfix">
-		<ul>
 		<?php
 			$i=0;
 			$colormag_links_output = '';
@@ -35,15 +33,14 @@ function colormag_social_links() {
 				$link = get_theme_mod( $key , '' );
 				if ( !empty( $link ) ) {
 					if ( get_theme_mod( $key.'_checkbox', 0 ) == 1 ) { $new_tab = 'target="_blank"'; } else { $new_tab = ''; }
+					// if ( $value == 'YouTube' ) { $value = 'youtube-play'; }
 					$colormag_links_output .=
-						'<li><a href="'.esc_url( $link ).'" '.$new_tab.'><i class="fa fa-'.strtolower($value).'"></i></a></li>';
+						'<span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><a href="'.esc_url( $link ).'" '.$new_tab.'><i class="fa fa-'.strtolower($value).' fa-stack-1x fa-inverse"></i></a></span>';
 				}
 				$i++;
 			}
 			echo $colormag_links_output;
 		?>
-		</ul>
-	</div><!-- .social-links -->
 	<?php
 }
 endif;

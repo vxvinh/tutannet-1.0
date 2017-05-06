@@ -3,8 +3,8 @@
  */
 jQuery(document).ready(function(){
    jQuery('.widget_slider_area_rotate').bxSlider({
-      mode: 'horizontal',
-      speed: 1500,
+      mode: 'fade',
+      speed: 3500,
       auto: true,
       pause: 5000,
       adaptiveHeight: true,

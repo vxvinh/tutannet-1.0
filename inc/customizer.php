@@ -157,26 +157,6 @@ function colormag_customize_register($wp_customize) {
       'settings' => 'colormag_primary_sticky_menu'
    ));
 
-   // search icon in menu enable/disable
-   $wp_customize->add_section('colormag_search_icon_in_menu_section', array(
-      'title' => __('Search Icon', 'colormag'),
-      'panel' => 'colormag_header_options'
-   ));
-
-   $wp_customize->add_setting('colormag_search_icon_in_menu', array(
-      'priority' => 5,
-      'default' => 0,
-      'capability' => 'edit_theme_options',
-      'sanitize_callback' => 'colormag_checkbox_sanitize'
-   ));
-
-   $wp_customize->add_control('colormag_search_icon_in_menu', array(
-      'type' => 'checkbox',
-      'label' => __('Check to display the Search Icon in the primary menu', 'colormag'),
-      'section' => 'colormag_search_icon_in_menu_section',
-      'settings' => 'colormag_search_icon_in_menu'
-   ));
-
    // random posts in menu enable/disable
    $wp_customize->add_section('colormag_random_post_in_menu_section', array(
       'title' => __('Random Post', 'colormag'),
@@ -195,6 +175,66 @@ function colormag_customize_register($wp_customize) {
       'label' => __('Check to display the Random Post Icon in the primary menu', 'colormag'),
       'section' => 'colormag_random_post_in_menu_section',
       'settings' => 'colormag_random_post_in_menu'
+   ));
+
+   // search icon in menu enable/disable
+   $wp_customize->add_section('tutannet_search_icon_in_menu_section', array(
+      'title' => __('Search Icon', 'colormag'),
+      'panel' => 'colormag_header_options'
+   ));
+
+   $wp_customize->add_setting('tutannet_search_icon_in_menu', array(
+      'priority' => 6,
+      'default' => 0,
+      'capability' => 'edit_theme_options',
+      'sanitize_callback' => 'colormag_checkbox_sanitize'
+   ));
+
+   $wp_customize->add_control('tutannet_search_icon_in_menu', array(
+      'type' => 'checkbox',
+      'label' => __('Check to display the Search Icon in the primary menu', 'colormag'),
+      'section' => 'tutannet_search_icon_in_menu_section',
+      'settings' => 'tutannet_search_icon_in_menu'
+   ));
+
+   // calendar icon in menu enable/disable
+   $wp_customize->add_section('tutannet_calendar_icon_in_menu_section', array(
+      'title' => __('Calendar Icon', 'colormag'),
+      'panel' => 'colormag_header_options'
+   ));
+
+   $wp_customize->add_setting('tutannet_calendar_icon_in_menu', array(
+      'priority' => 6,
+      'default' => 0,
+      'capability' => 'edit_theme_options',
+      'sanitize_callback' => 'colormag_checkbox_sanitize'
+   ));
+
+   $wp_customize->add_control('tutannet_calendar_icon_in_menu', array(
+      'type' => 'checkbox',
+      'label' => __('Check to display the Calendar Icon in the primary menu', 'colormag'),
+      'section' => 'tutannet_calendar_icon_in_menu_section',
+      'settings' => 'tutannet_calendar_icon_in_menu'
+   ));
+
+   // user icon in menu enable/disable
+   $wp_customize->add_section('tutannet_user_icon_in_menu_section', array(
+      'title' => __('User Icon', 'colormag'),
+      'panel' => 'colormag_header_options'
+   ));
+
+   $wp_customize->add_setting('tutannet_user_icon_in_menu', array(
+      'priority' => 6,
+      'default' => 0,
+      'capability' => 'edit_theme_options',
+      'sanitize_callback' => 'colormag_checkbox_sanitize'
+   ));
+
+   $wp_customize->add_control('tutannet_user_icon_in_menu', array(
+      'type' => 'checkbox',
+      'label' => __('Check to display the User Icon in the primary menu', 'colormag'),
+      'section' => 'tutannet_user_icon_in_menu_section',
+      'settings' => 'tutannet_user_icon_in_menu'
    ));
 
    // Responsive new menu enable/disable

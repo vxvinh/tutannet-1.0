@@ -8,28 +8,21 @@
  */
 get_header(); ?>
 
-   <div class="front-page-top-section clearfix">
-      <div class="widget_slider_area">
-         <?php
-         if( is_active_sidebar( 'colormag_front_page_slider_area' ) ) {
-            if ( !dynamic_sidebar( 'colormag_front_page_slider_area' ) ):
-            endif;
-         }
-         ?>
-      </div>
-
-      <div class="widget_beside_slider">
-         <?php
-         if( is_active_sidebar( 'colormag_front_page_area_beside_slider' ) ) {
-            if ( !dynamic_sidebar( 'colormag_front_page_area_beside_slider' ) ):
-            endif;
-         }
-         ?>
-      </div>
    </div>
    <div class="main-content-section clearfix">
       <div id="primary">
          <div id="content" class="clearfix">
+
+           <div class="front-page-top-section clearfix">
+              <div class="widget_slider_area">
+                 <?php
+                 if( is_active_sidebar( 'colormag_front_page_slider_area' ) ) {
+                    if ( !dynamic_sidebar( 'colormag_front_page_slider_area' ) ):
+                    endif;
+                 }
+                 ?>
+              </div>
+            </div>
 
          <?php
          if( is_active_sidebar( 'colormag_front_page_content_top_section' ) ) {
@@ -84,9 +77,8 @@ get_header(); ?>
                <?php endif; ?>
             </div>
          <?php endif; ?>
-         </div>
+       </div>
       </div>
       <?php colormag_sidebar_select(); ?>
-   </div>
 
 <?php get_footer(); ?>
