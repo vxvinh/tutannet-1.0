@@ -10,7 +10,7 @@ get_header(); ?>
 
 	<?php do_action( 'colormag_before_body_content' ); ?>
 
-	<div id="primary">
+	<div id="primary" class="col-sm-12 col-md-8 col-lg-7">
 		<div id="content" class="clearfix">
 
 			<?php if ( have_posts() ) : ?>

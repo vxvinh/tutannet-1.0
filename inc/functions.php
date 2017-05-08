@@ -20,7 +20,7 @@ function colormag_scripts_styles_method() {
    /**
    * Using google font
    */
-   wp_enqueue_style( 'colormag_google_fonts', '//fonts.googleapis.com/css?family=Open+Sans:400,600' );
+  //  wp_enqueue_style( 'colormag_google_fonts', '//fonts.googleapis.com/css?family=Open+Sans:400,600' );
 
    /**
 	* Loads our main stylesheet.
@@ -288,6 +288,54 @@ function colormag_sidebar_select() {
 endif;
 
 /****************************************************************************************/
+function wpdocs_excerpt_more( $more ) {
+    return ( ' ...' );
+}
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+
+/****************************************************************************************/
+
+if ( ! function_exists( 'colormag_single_entry_meta' ) ) :
+/**
+ * Shows meta information of post.
+ */
+function colormag_single_entry_meta() {
+   if ( 'post' == get_post_type() ) :
+   	echo '<div class="below-entry-meta">';
+   	?>
+
+      <?php
+      $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+      if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+         $time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+      }
+      $time_string = sprintf( $time_string,
+         esc_attr( get_the_date( 'c' ) ),
+         esc_html( get_the_date() ),
+         esc_attr( get_the_modified_date( 'c' ) ),
+         esc_html( get_the_modified_date() )
+      );
+   	printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
+   		esc_url( get_permalink() ),
+   		esc_attr( get_the_time() ),
+   		$time_string
+   	); ?>
+
+      <?php
+      if ( ! post_password_required() && comments_open() ) { ?>
+         <span class="comments"><?php comments_popup_link( __( '<i class="fa fa-comment"></i> Chưa có bình luận', 'colormag' ), __( '<i class="fa fa-comment"></i> 1 Bình luận', 'colormag' ), __( '<i class="fa fa-comments"></i> % Bình luận', 'colormag' ) ); ?></span>
+      <?php }
+   	$tags_list = get_the_tag_list( '<span class="tag-links"><i class="fa fa-tags"></i>', __( ', ', 'colormag' ), '</span>' );
+   	if ( $tags_list ) echo $tags_list;
+
+   	edit_post_link( __( 'Chỉnh sửa', 'colormag' ), '<span class="edit-link"><i class="fa fa-edit"></i>', '</span>' );
+
+   	echo '</div>';
+   endif;
+}
+endif;
+
+/****************************************************************************************/
 
 if ( ! function_exists( 'colormag_entry_meta' ) ) :
 /**
@@ -309,7 +357,7 @@ function colormag_entry_meta() {
          esc_attr( get_the_modified_date( 'c' ) ),
          esc_html( get_the_modified_date() )
       );
-   	printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+   	printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
    		esc_url( get_permalink() ),
    		esc_attr( get_the_time() ),
    		$time_string
@@ -317,12 +365,12 @@ function colormag_entry_meta() {
 
       <?php
       if ( ! post_password_required() && comments_open() ) { ?>
-         <span class="comments"><?php comments_popup_link( __( '<i class="fa fa-comment"></i> 0 Comment', 'colormag' ), __( '<i class="fa fa-comment"></i> 1 Comment', 'colormag' ), __( '<i class="fa fa-comments"></i> % Comments', 'colormag' ) ); ?></span>
+         <span class="comments"><?php comments_popup_link( __( '<i class="fa fa-comment"></i> Chưa có bình luận', 'colormag' ), __( '<i class="fa fa-comment"></i> 1 Bình luận', 'colormag' ), __( '<i class="fa fa-comments"></i> % Bình luận', 'colormag' ) ); ?></span>
       <?php }
    	$tags_list = get_the_tag_list( '<span class="tag-links"><i class="fa fa-tags"></i>', __( ', ', 'colormag' ), '</span>' );
    	if ( $tags_list ) echo $tags_list;
 
-   	edit_post_link( __( 'Edit', 'colormag' ), '<span class="edit-link"><i class="fa fa-edit"></i>', '</span>' );
+   	edit_post_link( __( 'Chỉnh sửa', 'colormag' ), '<span class="edit-link"><i class="fa fa-edit"></i>', '</span>' );
 
    	echo '</div>';
    endif;
@@ -486,7 +534,7 @@ function colormag_comment( $comment, $args, $depth ) {
 		// Display trackbacks differently than normal comments.
 	?>
 	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:', 'colormag' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'colormag' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:', 'colormag' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Chỉnh sửa)', 'colormag' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :

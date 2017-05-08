@@ -8,7 +8,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" class="post col-lg-4">
    <?php do_action( 'colormag_before_post_content' ); ?>
 
    <?php if ( has_post_thumbnail() ) { ?>
@@ -21,8 +21,6 @@
 
       <?php if( get_post_format() ) { get_template_part( 'inc/post-formats' ); } ?>
 
-      <?php colormag_colored_category(); ?>
-
       <header class="entry-header">
          <h2 class="entry-title">
             <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
@@ -30,13 +28,6 @@
       </header>
 
       <?php colormag_entry_meta(); ?>
-
-      <div class="entry-content clearfix">
-         <?php
-            the_excerpt();
-         ?>
-         <a class="more-link" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>"><span><?php _e( 'Read more', 'colormag' ); ?></span></a>
-      </div>
 
    </div>
 

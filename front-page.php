@@ -10,7 +10,8 @@ get_header(); ?>
 
    </div>
    <div class="main-content-section clearfix">
-      <div id="primary">
+      <div class="hidden-sx hidden-sm hidden-md col-lg-1"></div>
+      <div id="primary" class="col-sm-12 col-md-8 col-lg-7">
          <div id="content" class="clearfix">
 
            <div class="front-page-top-section clearfix">
@@ -80,5 +81,7 @@ get_header(); ?>
        </div>
       </div>
       <?php colormag_sidebar_select(); ?>
+      <div class="hidden-xs hidden-sm hidden-md col-lg-1"></div>
+
 
 <?php get_footer(); ?>

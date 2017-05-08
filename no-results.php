@@ -19,13 +19,29 @@
 
 		<?php elseif ( is_search() ) : ?>
 
-			<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'colormag' ); ?></p>
-			<?php get_search_form(); ?>
+			<header class="page-header">
+				<h1 class="page-title"><?php _e( 'Không thấy bài viết bạn đang tìm.', 'colormag' ); ?></h1>
+			</header>
+			<p>Xuân đi trăm hoa rụng</p>
+			<p>Xuân đến trăm hoa cười</p>
+			<p>Trước mắt việc đi mãi</p>
+			<p>Trên đầu, già đến rồi</p>
+			<p>Chớ bảo xuân tàn hoa rụng hết</p>
+			<p>Đêm qua – sân trước – một cành mai.</p>
+			<img class="error-img" src="<?php echo get_template_directory_uri() . '/img/plum.svg'?>">
 
 		<?php else : ?>
 
-			<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'colormag' ); ?></p>
-			<?php get_search_form(); ?>
+			<header class="page-header">
+				<h1 class="page-title"><?php _e( 'Không thấy trang bạn đang tìm.', 'colormag' ); ?></h1>
+			</header>
+			<p>Xuân đi trăm hoa rụng</p>
+			<p>Xuân đến trăm hoa cười</p>
+			<p>Trước mắt việc đi mãi</p>
+			<p>Trên đầu, già đến rồi</p>
+			<p>Chớ bảo xuân tàn hoa rụng hết</p>
+			<p>Đêm qua – sân trước – một cành mai.</p>
+			<img class="error-img" src="<?php echo get_template_directory_uri() . '/img/plum.svg'?>">
 
 		<?php endif; ?>
 	</div><!-- .page-content -->

@@ -11,8 +11,9 @@ get_header(); ?>
 
 	<?php do_action( 'colormag_before_body_content' ); ?>
 
-	<div id="primary">
-		<div id="content" class="clearfix">
+	<div class="hidden-sx hidden-sm hidden-md col-lg-1"></div>
+	<div id="primary" class="col-sm-12 col-md-8 col-lg-7">
+		<div id="content" class="clearfix container-fluid">
 
 			<?php if ( have_posts() ) : ?>
 
@@ -82,7 +83,7 @@ get_header(); ?>
 					?>
 				</header><!-- .page-header -->
 
-            <div class="article-container">
+            <div class="article-container row">
 
    				<?php global $post_i; $post_i = 1; ?>
 
@@ -106,6 +107,7 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 	<?php colormag_sidebar_select(); ?>
+	<div class="hidden-sx hidden-sm hidden-md col-lg-1"></div>
 
 	<?php do_action( 'colormag_after_body_content' ); ?>
 

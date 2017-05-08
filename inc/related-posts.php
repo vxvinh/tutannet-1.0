@@ -2,7 +2,7 @@
 
 <?php if ( $related_posts->have_posts() ): ?>
 
-<h4 class="related-posts-main-title"><i class="fa fa-thumbs-up"></i><span><?php _e('You May Also Like', 'colormag'); ?></span></h4>
+<h4 class="related-posts-main-title"><i class="fa fa-book"></i><span><?php _e('Bài viết đáng quan tâm', 'colormag'); ?></span></h4>
 
 <div class="related-posts clearfix">
 
@@ -30,7 +30,7 @@
                   esc_attr( get_the_date( 'c' ) ),
                   esc_html( get_the_date() )
                );
-               printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"><i class="fa fa-calendar-o"></i> %3$s</a></span>', 'colormag' ),
+               printf( __( '<span class="posted-on"><a href="%1$s" title="%2$s" rel="bookmark"> %3$s</a></span>', 'colormag' ),
                   esc_url( get_permalink() ),
                   esc_attr( get_the_time() ),
                   $time_string

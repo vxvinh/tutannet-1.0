@@ -10,12 +10,13 @@ get_header(); ?>
 
 	<?php do_action( 'colormag_before_body_content' ); ?>
 
-	<div id="primary">
+	<div class="hidden-sx hidden-sm hidden-md col-lg-1"></div>
+	<div id="primary" class="col-sm-12 col-md-8 col-lg-7">
 		<div id="content" class="clearfix">
 			<?php if ( have_posts() ) : ?>
 
             <header class="page-header">
-               <h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'colormag' ), get_search_query() ); ?></h1>
+               <h1 class="page-title"><?php printf( esc_html__( 'Kết quả tìm kiếm cho: %s', 'colormag' ), get_search_query() ); ?></h1>
             </header><!-- .page-header -->
 
 				<div class="article-container">
@@ -42,6 +43,7 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 	<?php colormag_sidebar_select(); ?>
+	<div class="hidden-sx hidden-sm hidden-md col-lg-1"></div>
 
 	<?php do_action( 'colormag_after_body_content' ); ?>
 

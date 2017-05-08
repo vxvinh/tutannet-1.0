@@ -8,7 +8,7 @@
  */
 ?>
 
-<div id="secondary">
+<div id="secondary" class="col-sm-7 col-md-4 col-lg-3">
 	<?php do_action( 'colormag_before_sidebar' ); ?>
 		<?php
 			if( is_page_template( 'page-templates/contact.php' ) ) {

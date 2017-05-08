@@ -25,11 +25,11 @@ wp_head();
 
 <body <?php body_class(); ?>>
 <?php	do_action( 'colormag_before' ); ?>
-<div id="page" class="hfeed site">
+<div id="page" class="hfeed site container-fluid">
 	<?php do_action( 'colormag_before_header' ); ?>
-	<header id="masthead" class="site-header clearfix">
+	<header id="masthead" class="site-header clearfix row">
 		<div id="header-text-nav-container" class="clearfix">
-			<div class="header-text-inner-wrap" style="background: url(<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>) no-repeat;">
+			<div class="header-text-inner-wrap" style="background: url(<?php echo get_template_directory_uri() . '/img/Ben-thuong.svg'?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>) no-repeat;">
 
 				<div id="header-text-nav-wrap" class="clearfix">
 					<div id="header-left-section">
@@ -65,11 +65,12 @@ wp_head();
 				                           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 				                        </h3>
 											<?php endif; ?>
-										</div>
-										<div class="col-xs-2">
 											<?php if ( get_theme_mod( 'colormag_date_display', 0 ) == 1 ) { ?>
 												 <?php colormag_date_display(); ?>
 											<?php } ?>
+										</div>
+										<div class="col-xs-2">
+
 									</div><!-- .row site-title -->
 						</div><!-- #header-text -->
 					</div><!-- #header-left-section -->
@@ -108,7 +109,7 @@ wp_head();
 				<div class="search-form-top">
 					 <?php get_search_form(); ?>
 				</div>
-				<div class="inner-wrap clearfix">
+				<div class="container-fluid">
 					<?php
                if ( get_theme_mod( 'colormag_home_icon_display', 0 ) == 1 ) {
                   if ( is_front_page() ) {
@@ -117,22 +118,22 @@ wp_head();
                      $home_icon_class = 'home-icon';
                   }
                   ?>
-                  <div class="<?php echo $home_icon_class; ?>">
+                  <div class="<?php echo $home_icon_class; ?> hidden-xs hidden-sm col-md-1 col-lg-2">
                      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><img src="<?php echo get_template_directory_uri() . '/img/lotus-logo.svg'?>"></a>
                   </div>
                   <?php
                }
                ?>
-               <h4 class="menu-toggle"></h4>
+               <h4 class="menu-toggle hidden-xs hidden-sm"></h4>
                <?php
                if ( has_nav_menu( 'primary' ) ) {
-                  wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'menu-primary-container', 'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>' ) );
+                  wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'menu-primary-container col-sm-12 col-md-11 col-lg-8', 'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>' ) );
                }
 					else {
 						wp_page_menu();
 					}
 					?>
-							<div class="toolbar-container">
+							<div class="toolbar-container hidden-xs hidden-sm hidden-md col-lg-2">
 								<?php if ( get_theme_mod( 'tutannet_search_icon_in_menu', 0 ) == 1 ) { ?>
                    <?php tutannet_search_icon(); ?>
                 <?php } ?>
@@ -155,5 +156,5 @@ wp_head();
 	</header>
 	<?php do_action( 'colormag_after_header' ); ?>
 	<?php do_action( 'colormag_before_main' ); ?>
-	<div id="main" class="clearfix">
-		<div class="inner-wrap clearfix">
+	<div id="main" class="clearfix container-fluid row">
+		<div class="row">

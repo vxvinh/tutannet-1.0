@@ -70,7 +70,7 @@ function colormag_setup() {
 
 	// Setup the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'colormag_custom_background_args', array(
-		'default-color' => 'eaeaea'
+		'default-color' => 'ffce00'
 	) ) );
 
 	/*

@@ -586,7 +586,7 @@ class colormag_featured_posts_widget extends WP_Widget {
                      <h3 class="entry-title">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                      </h3>
-                     <div class="below-entry-meta">
+                     <div class="below-entry-meta hidden-xs">
                         <?php
                            $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
                            $time_string = sprintf( $time_string,
@@ -602,7 +602,7 @@ class colormag_featured_posts_widget extends WP_Widget {
                         <span class="comments"><i class="fa fa-comment"></i><?php comments_popup_link( '0', '1', '%' );?></span>
                      </div>
                      <?php if( $i == 1 ) { ?>
-                     <div class="entry-content">
+                     <div class="entry-content hidden-xs">
                         <?php the_excerpt(); ?>
                      </div>
                      <?php } ?>
@@ -726,7 +726,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
             ?>
             <?php if( $i == 1 ) { $featured = 'colormag-featured-post-medium'; } else { $featured = 'colormag-featured-post-small'; } ?>
             <?php if( $i == 1 ) { echo '<div class="first-post container-fluid">'; } elseif ( $i == 2 ) { echo '<div class="following-post container-fluid">'; } ?>
-            <?php if( $i == 1 ) { echo '<div class="single-article col-xs-12 col-sm-12 col-md-12 clearfix">'; } elseif ( $i >= 2 ) { echo '<div class="single-article col-xs-12 col-sm-12 col-md-4 clearfix">'; } ?>
+            <?php if( $i == 1 ) { echo '<div class="single-article col-xs-12 col-sm-12 col-md-12 clearfix">'; } elseif ( $i >= 2 ) { echo '<div class="single-article col-xs-12 col-sm-4 col-md-4 clearfix">'; } ?>
                   <?php
                   if( has_post_thumbnail() ) {
                      $image = '';
@@ -738,7 +738,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
                      echo $image;
                   }
                   ?>
-                  <?php if( $i == 1 ) { echo '<div class="article-content col-xs-6 col-sm-6 col-md-6">' ; } else { echo '<div class="article-content">'; } ?>
+                  <?php if( $i == 1 ) { echo '<div class="article-content col-xs-12 col-sm-6 col-md-6">' ; } else { echo '<div class="article-content">'; } ?>
                      <h3 class="entry-title">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                      </h3>
@@ -758,8 +758,8 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
                         <span class="comments"><i class="fa fa-comment"></i><?php comments_popup_link( '0', '1', '%' );?></span>
                      </div>
                      <?php if( $i == 1 ) { ?>
-                     <hr></hr>
-                     <div class="entry-content">
+                     <hr class="hidden-xs"></hr>
+                     <div class="entry-content hidden-xs">
                         <?php the_excerpt(); ?>
                      </div>
                      <?php } ?>
