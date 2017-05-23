@@ -29,7 +29,7 @@ wp_head();
 	<?php do_action( 'colormag_before_header' ); ?>
 	<header id="masthead" class="site-header clearfix row">
 		<div id="header-text-nav-container" class="clearfix">
-			<div class="header-text-inner-wrap" style="background: url(<?php echo get_template_directory_uri() . '/img/Ben-thuong.svg'?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>) no-repeat;">
+			<div class="header-text-inner-wrap" style="background-image: url(<?php echo get_template_directory_uri() . '/img/Ben-thuong.svg'?>);" alt="<?php echo( get_bloginfo( 'title' ) ); ?>)">
 
 				<div id="header-text-nav-wrap" class="clearfix">
 					<div id="header-left-section">
@@ -54,11 +54,11 @@ wp_head();
 						?>
 						<div id="header-text" class="<?php echo $screen_reader; ?>">
 									<div class="row">
-										<div class="col-xs-2"></div>
-										<div class="col-xs-8">
+										<div class="col-xs-1"></div>
+										<div class="col-xs-10">
 											<?php if ( is_front_page() || is_home() ) : ?>
 												<h1 id="site-title">
-				   								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				   								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">Chùa Từ&nbsp;Tân</a>
 				   							</h1>
 				                     <?php else : ?>
 				                        <h3 id="site-title">
@@ -69,7 +69,7 @@ wp_head();
 												 <?php colormag_date_display(); ?>
 											<?php } ?>
 										</div>
-										<div class="col-xs-2">
+										<div class="col-xs-1">
 
 									</div><!-- .row site-title -->
 						</div><!-- #header-text -->
@@ -118,22 +118,22 @@ wp_head();
                      $home_icon_class = 'home-icon';
                   }
                   ?>
-                  <div class="<?php echo $home_icon_class; ?> hidden-xs hidden-sm col-md-1 col-lg-2">
+                  <div class="<?php echo $home_icon_class; ?> hidden-xs hidden-sm hidden-md hidden-lg">
                      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><img src="<?php echo get_template_directory_uri() . '/img/lotus-logo.svg'?>"></a>
                   </div>
                   <?php
                }
                ?>
-               <h4 class="menu-toggle hidden-xs hidden-sm"></h4>
+               <h4 class="menu-toggle"></h4>
                <?php
                if ( has_nav_menu( 'primary' ) ) {
-                  wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'menu-primary-container col-sm-12 col-md-11 col-lg-8', 'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>' ) );
+                  wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'menu-primary-container col-sm-12 col-md-12 col-lg-12', 'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>' ) );
                }
 					else {
 						wp_page_menu();
 					}
 					?>
-							<div class="toolbar-container hidden-xs hidden-sm hidden-md col-lg-2">
+							<div class="toolbar-container hidden-xs hidden-sm hidden-md hidden-lg">
 								<?php if ( get_theme_mod( 'tutannet_search_icon_in_menu', 0 ) == 1 ) { ?>
                    <?php tutannet_search_icon(); ?>
                 <?php } ?>

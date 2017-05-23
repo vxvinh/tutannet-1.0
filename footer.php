@@ -30,12 +30,11 @@
 		              </div><!-- .footer-padder -->
 		              <div class="footer-padder">
 		              	<h5>Số điện thoại</h5>
-		              	<p>08 3845 8297</p>
+		              	<p><a>08 3845 8297</a></p>
 		             </div><!-- .footer-padder -->
 		          </div><!-- .col-lg-4 -->
 		          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		          	<div class="footer-padder">
-		          		<img class="footer-badge" src="<?php echo get_template_directory_uri() . '/img/Tu-Tan-pagoda-logo.svg'?>" alt="Chùa Từ Tân" style="width: 12em;">
 		              </div><!-- .footer-padder -->
 		          </div><!-- .col-lg-4 -->
 		          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

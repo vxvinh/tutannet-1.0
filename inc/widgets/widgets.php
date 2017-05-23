@@ -353,6 +353,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
       $number = $instance['number'];
       $type = $instance['type'];
       $category = $instance['category'];
+
       ?>
       <p>
          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'colormag' ); ?></label>
@@ -392,6 +393,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
       $number = empty( $instance[ 'number' ] ) ? 4 : $instance[ 'number' ];
       $type = isset( $instance[ 'type' ] ) ? $instance[ 'type' ] : 'latest' ;
       $category = isset( $instance[ 'category' ] ) ? $instance[ 'category' ] : '';
+      $category_link = get_category_link( $category );
 
       if( $type == 'latest' ) {
          $get_featured_posts = new WP_Query( array(
@@ -412,7 +414,7 @@ class colormag_highlighted_posts_widget extends WP_Widget {
       <div class="widget_highlighted_post_area">
       <?php $featured = 'colormag-highlighted-post'; ?>
       <?php
-        if ( !empty( $title ) ) { echo '<h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3>'; }
+        if ( !empty( $title ) ) { echo '<a href="'. esc_url( $category_link ) .'" title="'. esc_html( $title ) .'"><h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3></a>'; }
        ?>
          <?php
          $i=1;
@@ -537,6 +539,7 @@ class colormag_featured_posts_widget extends WP_Widget {
       $number = empty( $instance[ 'number' ] ) ? 4 : $instance[ 'number' ];
       $type = isset( $instance[ 'type' ] ) ? $instance[ 'type' ] : 'latest' ;
       $category = isset( $instance[ 'category' ] ) ? $instance[ 'category' ] : '';
+      $category_link = get_category_link( $category );
 
       if( $type == 'latest' ) {
          $get_featured_posts = new WP_Query( array(
@@ -562,8 +565,9 @@ class colormag_featured_posts_widget extends WP_Widget {
             $border_color = '';
             $title_color = '';
          }
-         if ( !empty( $title ) ) { echo '<h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3>'; }
+         if ( !empty( $title ) ) { echo '<a href="'. esc_url( $category_link ) .'" title="'. esc_html( $title ) .'"><h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3></a>'; }
          if( !empty( $text ) ) { ?> <p> <?php echo esc_textarea( $text ); ?> </p> <?php } ?>
+
          <?php
          $i=1;
          while( $get_featured_posts->have_posts() ):$get_featured_posts->the_post();
@@ -586,7 +590,7 @@ class colormag_featured_posts_widget extends WP_Widget {
                      <h3 class="entry-title">
                         <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a>
                      </h3>
-                     <div class="below-entry-meta hidden-xs">
+                     <div class="below-entry-meta">
                         <?php
                            $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
                            $time_string = sprintf( $time_string,
@@ -693,6 +697,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
       $number = empty( $instance[ 'number' ] ) ? 4 : $instance[ 'number' ];
       $type = isset( $instance[ 'type' ] ) ? $instance[ 'type' ] : 'latest' ;
       $category = isset( $instance[ 'category' ] ) ? $instance[ 'category' ] : '';
+      $category_link = get_category_link( $category );
 
       if( $type == 'latest' ) {
          $get_featured_posts = new WP_Query( array(
@@ -718,7 +723,7 @@ class colormag_featured_posts_vertical_widget extends WP_Widget {
             $border_color = '';
             $title_color = '';
          }
-         if ( !empty( $title ) ) { echo '<h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3>'; }
+         if ( !empty( $title ) ) { echo '<a href="'. esc_url( $category_link ) .'" title="'. esc_html( $title ) .'"><h3 class="widget-title" '. $border_color .'><span ' . $title_color .'>'. esc_html( $title ) .'</span></h3></a>'; }
          if( !empty( $text ) ) { ?> <p> <?php echo esc_textarea( $text ); ?> </p> <?php } ?>
          <?php
          $i=1;

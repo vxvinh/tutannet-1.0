@@ -2,7 +2,7 @@
 
 <?php if ( $related_posts->have_posts() ): ?>
 
-<h4 class="related-posts-main-title"><i class="fa fa-book"></i><span><?php _e('Bài viết đáng quan tâm', 'colormag'); ?></span></h4>
+<h4 class="related-posts-main-title"><i class="fa fa-book"></i><span><?php _e('Bài đáng quan tâm', 'colormag'); ?></span></h4>
 
 <div class="related-posts clearfix">
 

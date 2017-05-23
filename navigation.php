@@ -21,8 +21,8 @@ if( is_archive() || is_home() || is_search() ) {
 		if ( $wp_query->max_num_pages > 1 ) :
 		?>
 		<ul class="default-wp-page clearfix">
-			<li class="previous"><?php next_posts_link( __( '&larr; Previous', 'colormag' ) ); ?></li>
-			<li class="next"><?php previous_posts_link( __( 'Next &rarr;', 'colormag' ) ); ?></li>
+			<li class="previous"><?php next_posts_link( __( '&larr; Các bài trước', 'colormag' ) ); ?></li>
+			<li class="next"><?php previous_posts_link( __( 'Các bài sau &rarr;', 'colormag' ) ); ?></li>
 		</ul>
 		<?php
 		endif;
@@ -33,16 +33,16 @@ if ( is_single() ) {
 	if( is_attachment() ) {
 	?>
 		<ul class="default-wp-page clearfix">
-			<li class="previous"><?php previous_image_link( false, __( '&larr; Previous', 'colormag' ) ); ?></li>
-			<li class="next"><?php next_image_link( false, __( 'Next &rarr;', 'colormag' ) ); ?></li>
+			<li class="previous"><?php previous_image_link( false, __( '&larr; Bài trước', 'colormag' ) ); ?></li>
+			<li class="next"><?php next_image_link( false, __( 'Bài sau &rarr;', 'colormag' ) ); ?></li>
 		</ul>
 	<?php
 	}
 	else {
 	?>
 		<ul class="default-wp-page clearfix">
-			<li class="previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'colormag' ) . '</span> %title' ); ?></li>
-			<li class="next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'colormag' ) . '</span>' ); ?></li>
+			<li class="previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Đường dẫn bài trước', 'colormag' ) . '</span> %title' ); ?></li>
+			<li class="next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Đường dẫn bài sau', 'colormag' ) . '</span>' ); ?></li>
 		</ul>
 	<?php
 	}

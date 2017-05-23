@@ -21,13 +21,13 @@ get_header(); ?>
 						<header class="page-header">
 							<h1 class="page-title"><?php _e( 'Không thấy trang bạn đang tìm.', 'colormag' ); ?></h1>
 						</header>
+						<img class="error-img" src="<?php echo get_template_directory_uri() . '/img/plum.svg'?>">
 						<p>Xuân đi trăm hoa rụng</p>
 						<p>Xuân đến trăm hoa cười</p>
 						<p>Trước mắt việc đi mãi</p>
 						<p>Trên đầu, già đến rồi</p>
 						<p>Chớ bảo xuân tàn hoa rụng hết</p>
 						<p>Đêm qua – sân trước – một cành mai.</p>
-						<img class="error-img" src="<?php echo get_template_directory_uri() . '/img/plum.svg'?>">
 					<?php endif; ?>
 
 				</div><!-- .page-content -->
